@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 import Head from "next/head";
-import Chat from "../components/chat";
+import Chat from "../components/Chat";
 =======
 import { useState, useEffect } from "react";
 import Chat from "../components/Chat";
