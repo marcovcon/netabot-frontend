@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://netabot-backend.onrender.com";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://netabot-backend-api.onrender.com";
 
 export async function sendMessage(message: string, mode: string = "libre") {
   const response = await fetch(`${API_URL}/chat`, {
