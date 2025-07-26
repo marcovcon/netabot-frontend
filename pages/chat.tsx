@@ -1,4 +1,4 @@
-// pages/chat.tsx (antes chat-ui.tsx)
+// pages/chat.tsx
 import Navbar from "../components/navbar";
 import Chat from "../components/chat";
 
