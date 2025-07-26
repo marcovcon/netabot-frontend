@@ -1,4 +1,3 @@
-// pages/api/chat.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -7,13 +6,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const { message } = req.body;
-
   if (!message) {
-    return res.status(400).json({ message: "No se recibió mensaje" });
+    return res.status(400).json({ message: "No se recibió ningún mensaje" });
   }
 
-  // Aquí puedes conectar con MythoMax u otro modelo en producción
-  return res.status(200).json({
-    response: `Recibí tu mensaje: "${message}". ¡Gracias por usar Netabot!`,
-  });
+  const response = `Recibí tu mensaje: "${message}". ¡Gracias por usar Netabot!`;
+  return res.status(200).json({ response });
 }
