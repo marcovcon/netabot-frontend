@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 
-type ChatProps = {
-  mode: "careful" | "free";
-};
-
-export default function Chat({ mode }: ChatProps) {
+export default function Chat() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<string[]>([]);
 
@@ -13,24 +9,22 @@ export default function Chat({ mode }: ChatProps) {
     if (!input.trim()) return;
 
     const userMessage = input;
-    setMessages([...messages, "🧑 " + userMessage]);
+    setMessages((prev) => [...prev, "🧑 " + userMessage]);
     setInput("");
 
     try {
-      const response = await fetch(
-        `https://netabot-backend.onrender.com/chat?modo=${mode}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message: userMessage }),
-        }
-      );
+      const response = await fetch("https://netabot-backend.onrender.com/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage }),
+      });
 
       const data = await response.json();
+
       if (data?.response) {
         setMessages((prev) => [...prev, "🤖 " + data.response]);
+      } else {
+        setMessages((prev) => [...prev, "🤖 (sin respuesta)"]);
       }
     } catch (error) {
       setMessages((prev) => [...prev, "⚠️ Error al obtener respuesta"]);
